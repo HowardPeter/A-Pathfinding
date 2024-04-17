@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Grid : MonoBehaviour
+public class GridScript : MonoBehaviour
 {
-    public Transform player;
+    //public Transform player;
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
@@ -55,14 +55,14 @@ public class Grid : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 1));
         if (grid != null)
         {
-            Node playerNode = NodeFromWorldPoint(player.position);
+            //Node playerNode = NodeFromWorldPoint(player.position);
             foreach (Node n in grid)
             {
-                Gizmos.color = (n.walkable) ? Color.white : Color.red;
-                if (playerNode == n)
-                {
-                    Gizmos.color = Color.yellow;
-                }
+                Gizmos.color = (n.walkable) ? Color.white : Color.black;
+                //if (playerNode == n)
+                //{
+                //    Gizmos.color = Color.yellow;
+                //}
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
         }
