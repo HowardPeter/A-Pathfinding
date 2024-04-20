@@ -37,6 +37,8 @@ public class GridScript : MonoBehaviour
             }
         }
     }
+
+    //neighbors of current node
     public List<Node> GetNeighbours(Node node)
     {
         List<Node> neighbours = new List<Node>();

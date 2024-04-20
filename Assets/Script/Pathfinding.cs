@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,47 +19,47 @@ public class Pathfinding : MonoBehaviour
 
     void FindPath(Vector3 startPos, Vector3 targetPos)
     {
+        //convert 2 positions into currentNode
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
-        List<Node> openSet = new List<Node>();
-        HashSet<Node> closedSet = new HashSet<Node>();
+        List<Node> openSet = new List<Node>(); //các currentNode chưa được duyệt
+        HashSet<Node> closedSet = new HashSet<Node>(); //các currentNode đã được duyệt
         openSet.Add(startNode);
 
         while (openSet.Count > 0)
         {
-            Node node = openSet[0];
+            Node currentNode = openSet[0];
             for (int i = 1; i < openSet.Count; i++)
             {
-                if (openSet[i].fCost < node.fCost || openSet[i].fCost == node.fCost)
+                if (openSet[i].fCost < currentNode.fCost || openSet[i].fCost == currentNode.fCost && openSet[i].hCost < currentNode.hCost)
                 {
-                    if (openSet[i].hCost < node.hCost)
-                        node = openSet[i];
+                    currentNode = openSet[i];
                 }
             }
 
-            openSet.Remove(node);
-            closedSet.Add(node);
+            openSet.Remove(currentNode);
+            closedSet.Add(currentNode);
 
-            if (node == targetNode)
+            if (currentNode == targetNode)
             {
                 RetracePath(startNode, targetNode);
                 return;
             }
 
-            foreach (Node neighbour in grid.GetNeighbours(node))
+            foreach (Node neighbour in grid.GetNeighbours(currentNode))
             {
                 if (!neighbour.walkable || closedSet.Contains(neighbour))
                 {
                     continue;
                 }
 
-                int newCostToNeighbour = node.gCost + GetDistance(node, neighbour);
+                int newCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
                 if (newCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
                 {
                     neighbour.gCost = newCostToNeighbour;
                     neighbour.hCost = GetDistance(neighbour, targetNode);
-                    neighbour.parent = node;
+                    neighbour.parent = currentNode;
 
                     if (!openSet.Contains(neighbour))
                         openSet.Add(neighbour);
