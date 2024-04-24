@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -81,24 +81,26 @@ public class GridScript : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, gridWorldSize.y, 0));
         if (grid != null)
         {
-            Node playerNode = NodeFromWorldPoint(player.position);
-            Node targetNode = NodeFromWorldPoint(target.position);
+            //Node playerNode = NodeFromWorldPoint(player.position);
+            //Node targetNode = NodeFromWorldPoint(target.position);
             foreach (Node n in grid)
             {
-                Gizmos.color = (n.walkable) ? Color.white : Color.black;
-                if (playerNode == n)
-                {
-                    Gizmos.color = Color.yellow;
-                }
-                if (Mathf.Approximately(targetNode.worldPosition.x, n.worldPosition.x) && Mathf.Approximately(targetNode.worldPosition.y, n.worldPosition.y))
-                {
-                    Gizmos.color = Color.green;
-                }
+                //Gizmos.color = (n.walkable) ? Color.white : Color.black;
+                //if (playerNode == n)
+                //{
+                //    Gizmos.color = Color.yellow;
+                //}
+                //if (Mathf.Approximately(targetNode.worldPosition.x, n.worldPosition.x) && Mathf.Approximately(targetNode.worldPosition.y, n.worldPosition.y))
+                //{
+                //    Gizmos.color = Color.green;
+                //}
                 if (path != null && path.Contains(n))
                 {
+                    // vẽ cube với màu cyan nếu n là một node trên đường đi
                     Gizmos.color = Color.cyan;
+                    Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
                 }
-                Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
+                //Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
             }
         }
     }
