@@ -566,6 +566,7 @@ MonoBehaviour:
     m_Bits: 8
   gridWorldSize: {x: 17.8, y: 10}
   nodeRadius: 0.15
+  pathOnly: 1
 --- !u!4 &1659359117
 Transform:
   m_ObjectHideFlags: 0
