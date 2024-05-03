@@ -78,6 +78,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
+    // tạo đường đi ngắn nhất từ các node
     void RetracePath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
@@ -94,6 +95,7 @@ public class Pathfinding : MonoBehaviour
 
     }
 
+    // hàm heuristic cho hCost
     int GetDistance(Node nodeA, Node nodeB)
     {
         int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
