@@ -19,13 +19,13 @@ public class Pathfinding : MonoBehaviour
 
     void FindPath(Vector3 startPos, Vector3 targetPos)
     {
-        // lấy vị trí của 2 điểm start và target tham chiếu tới grid node tương ứng
+        // Lấy vị trí của 2 điểm start và target tham chiếu tới grid node tương ứng
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
-        List<Node> openSet = new List<Node>(); //các currentNode chưa được duyệt
-        HashSet<Node> closedSet = new HashSet<Node>(); //các currentNode đã được duyệt
-        openSet.Add(startNode); //Thêm nút bắt đầu vào Open
+        List<Node> openSet = new List<Node>(); // Các currentNode chưa được duyệt
+        HashSet<Node> closedSet = new HashSet<Node>(); // Các currentNode đã được duyệt
+        openSet.Add(startNode); // Thêm nút bắt đầu vào Open
 
         while (openSet.Count > 0)
         {
@@ -78,7 +78,7 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    // tạo đường đi ngắn nhất từ các node
+    // Tạo đường đi ngắn nhất từ các node đã duyệt
     void RetracePath(Node startNode, Node endNode)
     {
         List<Node> path = new List<Node>();
@@ -95,7 +95,7 @@ public class Pathfinding : MonoBehaviour
 
     }
 
-    // hàm heuristic cho hCost
+    // Hàm heuristic cho hCost
     int GetDistance(Node nodeA, Node nodeB)
     {
         int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
