@@ -1,8 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static MazeGenerator;
 
+
+// Đây là script tạo mê cung ngẫu nhiên hỗ trợ cho việc chạy thuật toán. Script không liên quan đến đề tài.
 public class MazeGenerator : MonoBehaviour
 {
     #region Variables:
